@@ -8,6 +8,7 @@ import roomsRoute from "./routes/rooms.js"
 import restaurantsRoute from "./routes/restaurants.js"
 import tablesRoute from "./routes/tables.js"
 import cookieParser from 'cookie-parser'
+import cors from "cors"
 
 const app = express()
 dotenv.config()
@@ -26,6 +27,7 @@ mongoose.connection.on("disconnected", ()=>{
 })
 
 //Middlewares
+app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
