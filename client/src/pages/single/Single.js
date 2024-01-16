@@ -10,17 +10,22 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
+import { AuthContext } from '../../context/AuthContext'
+import Reserve from '../../components/reserve/Reserve'
 
 const Single = () => {
   const location = useLocation()
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openBook, setOpenBook] = useState(false);
   const {data, loading, error} = useFetch(`http://localhost:8080/api/hotels/find/${id}`)
-  
+  const {user} = useContext(AuthContext)
+  const navigate = useNavigate()
+
   const {dates, options} = useContext(SearchContext)
   console.log(dates)
 
@@ -71,6 +76,14 @@ const Single = () => {
     setSlideNumber(newSlideNumber)
   };
 
+  const handleClick = ()=>{
+    if (user) {
+      setOpenBook(true)
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -101,7 +114,7 @@ const Single = () => {
           </div>
         )}
         <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
+          <button className="bookNow" onClick={handleClick}>Reserve or Book Now!</button>
           <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
@@ -141,13 +154,13 @@ const Single = () => {
               <h2>
                 <b>KES {days * data.cheapestPrice * options.room}</b> ({days} nights)
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button onClick={handleClick}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
         {/* <MailList /> */}
       </div>)}
-
+      {openBook && <Reserve setOpen={setOpenBook} hotelId={id}/>}
     </div>
   )
 }
