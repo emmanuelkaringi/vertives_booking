@@ -13,7 +13,7 @@
 
 .listSearch {
   flex: 1;
-  background-color: #febb02;
+  background-color: #ededed;
   padding: 10px;
   border-radius: 10px;
   position: sticky;
@@ -22,8 +22,11 @@
 }
 
 .lsTitle {
+  color: #181e4b;
+  text-align: center;
+  font-family: Volkhov;
   font-size: 20px;
-  color: #555;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
@@ -35,15 +38,25 @@
 }
 
 .lsItem > label {
+  color: #343434;
+  font-family: Poppins;
+  font-weight: 700;
+  font-style: normal;
   font-size: 12px;
+  text-transform: capitalize;
 }
 
 .lsItem > input {
+  color: rgba(0, 0, 0, 0.26);
+  font-family: Poppins;
+  font-size: 12px;
   height: 30px;
   border: none;
   padding: 5px;
 }
+
 .lsItem > span {
+  color: #122526;
   height: 30px;
   padding: 5px;
   background-color: white;
@@ -60,7 +73,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  color: #555;
+  color: #122526;
   font-size: 12px;
 }
 
@@ -69,12 +82,15 @@
 }
 
 .listSearch > button {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #df6951;
   color: white;
   border: none;
+  border-radius: 10px;
   width: 100%;
-  font-weight: 500;
   cursor: pointer;
 }
 

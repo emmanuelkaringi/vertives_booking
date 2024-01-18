@@ -20,27 +20,36 @@
     right: 0;
     border: none;
     padding: 10px 20px;
-    background-color: #0071c2;
+    background-color: #DF6951;;
     color: white;
+    font-family: Poppins;
+    font-size: 14px;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
   }
   
   .hotelTitle {
-    font-size: 24px;
+    color: #181E4B;
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
   }
   
   .hotelAddress {
+    color: #DF6951;
     font-size: 12px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
     display: flex;
     align-items: center;
     gap: 10px;
-  }
-  
-  .hotelDistance {
-    color: #0071c2;
-    font-weight: 500;
   }
   
   .hotelPriceHighlight {
@@ -76,13 +85,17 @@
   }
   
   .hotelDesc {
-    font-size: 14px;
+    color: black;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
     margin-top: 20px;
   }
   
   .hotelDetailsPrice {
     flex: 1;
-    background-color: #ebf3ff;
+    background-color: #EDEDED;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -90,23 +103,35 @@
   }
   
   .hotelDetailsPrice > h1 {
-    font-size: 18px;
-    color: #555;
+    color: #181E4B;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 17px;
+    text-transform: capitalize;
   }
+
   .hotelDetailsPrice > span {
+    font-family: Poppins;
     font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
   }
+
   .hotelDetailsPrice > h2 {
-    font-weight: 300;
+    color: #181E4B;
+    font-family: Volkhov;
+    font-weight: 700;
   }
+
   .hotelDetailsPrice > button {
     border: none;
     padding: 10px 20px;
-    background-color: #0071c2;
+    background-color: #DF6951;
     color: white;
+    font-family: Poppins;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   
   .slider{

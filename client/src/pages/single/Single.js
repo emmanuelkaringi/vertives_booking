@@ -120,11 +120,8 @@ const Single = () => {
             <FontAwesomeIcon icon={faLocationDot} />
             <span>{data.address}</span>
           </div>
-          <span className="hotelDistance">
-            {data.distance} from center
-          </span>
           <span className="hotelPriceHighlight">
-            Book a stay over KES {data.cheapestPrice} at this property and get a free airport taxi
+            Book a stay from as low as KES. {data.cheapestPrice} at this hotel.
           </span>
           <div className="hotelImages">
             {photos.map((photo, i) => (
@@ -148,8 +145,8 @@ const Single = () => {
             <div className="hotelDetailsPrice">
               <h1>Perfect for a {days}-night stay!</h1>
               <span>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
+                Located in the real heart of {data.city}, this property has an
+                excellent location score of {data.rating}!
               </span>
               <h2>
                 <b>KES {days * data.cheapestPrice * options.room}</b> ({days} nights)
@@ -158,7 +155,7 @@ const Single = () => {
             </div>
           </div>
         </div>
-        {/* <MailList /> */}
+        <MailList />
       </div>)}
       {openBook && <Reserve setOpen={setOpenBook} hotelId={id}/>}
     </div>
