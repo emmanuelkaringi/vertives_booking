@@ -23,8 +23,8 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("http://localhost:8080/api/auth/login", credentials);
-      console.log('Server response:', res.data);
-      dispatch({ type: "LOGIN_SUCCESS", payload: JSON.stringify(res.data) });
+      console.log('Server response:', res.data.details);
+      dispatch({ type: "LOGIN_SUCCESS", payload: JSON.stringify(res.data.details) });
       navigate("/")
     } catch (err) {
       dispatch({ type: "LOGIN_FAIL", payload: err.response.data });
