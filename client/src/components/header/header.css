@@ -1,5 +1,5 @@
 .header{
-    background-color: #003580;
+    background-color: #122526;
     color: white;
     display: flex;
     justify-content: center;
@@ -9,7 +9,7 @@
 .headerContainer{
     width: 100%;
     max-width: 1024px;
-    margin: 20px 0px 100px 0px;
+    margin: 20px 0px 50px 0px;
 }
 
 .headerContainer.listMode {
@@ -39,7 +39,8 @@
 }
 
 .headerBtn{
-    background-color: #0071c2;
+    font-family: 'Poppins', sans-serif;
+    background-color: #DF6951;
     color: white;
     font-weight: 500;
     border: none;
@@ -50,7 +51,7 @@
 .headerSearch{
     height: 30px;
     background-color: white;
-    border: 3px solid #febb02;
+    border: 3px solid #DF6951;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -118,8 +119,8 @@
   .optionCounterBtn {
     width: 30px;
     height: 30px;
-    border: 1px solid #0071c2;
-    color: #0071c2;
+    border: 1px solid #DF6951;
+    color: #DF6951;
     cursor: pointer;
     background-color: white;
   }

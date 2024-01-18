@@ -80,9 +80,9 @@ const Header = ({ type }) => {
           </div>
           {type !== "list" && (
             <>
-              <h1 className="headerTitle">Find your next stay</h1>
+              <h1 className="headerTitle">Find your next stay with us</h1>
               <p className="headerDesc">
-                Search deals on hotels, homes, and much more...
+                Search deals on hotels and restaurants
               </p>
 
               <div className="headerSearch">
