@@ -39,46 +39,52 @@ const Register = () => {
 
   return (
     <div className="wrapper">
-      <h1>Sign Up</h1>
+      <h1 className="title">Sign Up</h1>
       <div className="form">
         <input
           type="text"
           placeholder="Username"
           id="username"
           onChange={handleChange}
+          className="fInput"
         />
         <input
           type="email"
           placeholder="Email"
           id="email"
           onChange={handleChange}
+          className="fInput"
         />
         <input
           type="text"
           placeholder="Country"
           id="country"
           onChange={handleChange}
+          className="fInput"
         />
         <input
           type="text"
           placeholder="City"
           id="city"
           onChange={handleChange}
+          className="fInput"
         />
         <input
           type="text"
           placeholder="Phone"
           id="phone"
           onChange={handleChange}
+          className="fInput"
         />
         <input
           type="password"
           placeholder="Password"
           id="password"
           onChange={handleChange}
+          className="fInput"
         />
       </div>
-      <button disabled={loading} onClick={handleClick}>
+      <button disabled={loading} onClick={handleClick} className="authbtn">
         Sign Up
       </button>
       {error && <span>{error.message}</span>}

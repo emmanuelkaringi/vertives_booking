@@ -35,23 +35,26 @@ const Login = () => {
   };
 
   return (
+    <div className="container">
     <div className="wrapper">
-      <h1>Login</h1>
+      <h1 className="title">Login</h1>
       <div className="form">
         <input
           type="text"
           placeholder="username"
           id="username"
           onChange={handleChange}
+          className="fInput"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
+          className="fInput"
         />
       </div>
-      <button disabled={loading} onClick={handleClick}>
+      <button disabled={loading} onClick={handleClick} className="authbtn">
         Login
       </button>
       {error && <span>{error.message}</span>}
@@ -61,6 +64,8 @@ const Login = () => {
           Register Here
         </Link>
       </div>
+    </div>
+
     </div>
   );
 };

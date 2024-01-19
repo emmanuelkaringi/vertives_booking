@@ -1,12 +1,5 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.container{
   font-family: Poppins;
-}
-
-body{
-  background-color: #dfe9f5;
 }
 
 .wrapper{
@@ -19,13 +12,14 @@ body{
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
-h1{
+.title{
   font-size: 2rem;
   color: #07001f;
   margin-bottom: 1.2rem;
 }
 
-.form > input{
+.fInput{
+  box-sizing: border-box;
   width: 92%;
   outline: none;
   border: 1px solid #fff;
@@ -35,7 +29,7 @@ h1{
   background: #e4e4e4;
 }
 
-button{
+.authbtn{
   font-size: 1rem;
   margin-top: 1rem;
   padding: 10px 0;
@@ -48,10 +42,10 @@ button{
   background: rgb(17, 107, 143);
 }
 
-button:hover{
+.authbtn:hover{
   background: rgba(17, 107, 143, 0.877);
 }
-input:focus{
+.fInput:focus{
   border: 1px solid rgb(192, 192, 192);
 }
 
@@ -74,37 +68,3 @@ input:focus{
   text-decoration: none;
   color: #464647;
 } */
-
-
-/* .login {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .lContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .lInput{
-    height: 30px;
-    padding: 10px;
-  }
-  
-  .lButton {
-    border: none;
-    padding: 10px 20px;
-    background-color: #0071c2;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .lButton:disabled{
-    background-color: #0071c28c;
-    cursor: not-allowed;
-  } */

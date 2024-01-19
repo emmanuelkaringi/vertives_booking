@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "./navbar.css";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">VertivesBooking</span>
         </Link>
-        {!user && (
+        {user ? user.username : (
           <div className="navItems">
             <Link to={"/register"}>
               <button className="navButton">Register</button>
@@ -22,6 +22,11 @@ const Navbar = () => {
             </Link>
           </div>
         )}
+        {/* {user && (
+          <div className="navItems">
+            <button className="navButton">Logout</button>
+          </div>
+        )} */}
       </div>
     </div>
   );

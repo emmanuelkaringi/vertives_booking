@@ -1,13 +1,6 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.container{
     font-family: Poppins;
-}
-
-body{
-    background-color: #dfe9f5;
-}
+  }
 
 .wrapper{
     width: 330px;
@@ -19,13 +12,14 @@ body{
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
-h1{
+.title{
     font-size: 2rem;
     color: #07001f;
     margin-bottom: 1.2rem;
-}
+  }
 
-.form > input{
+  .fInput{
+    box-sizing: border-box;
     width: 92%;
     outline: none;
     border: 1px solid #fff;
@@ -33,9 +27,9 @@ h1{
     margin-bottom: 10px;
     border-radius: 20px;
     background: #e4e4e4;
-}
+  }
 
-button{
+  .authbtn{
     font-size: 1rem;
     margin-top: 1rem;
     padding: 10px 0;
@@ -46,14 +40,14 @@ button{
     color: #fff;
     cursor: pointer;
     background: rgb(17, 107, 143);
-}
-
-button:hover{
+  }
+  
+  .authbtn:hover{
     background: rgba(17, 107, 143, 0.877);
-}
-input:focus{
+  }
+  .fInput:focus{
     border: 1px solid rgb(192, 192, 192);
-}
+  }
 
 .member{
     font-size: 0.8rem;
@@ -65,12 +59,3 @@ input:focus{
     color: rgb(17, 107, 143);
     text-decoration: none;
 }
-
-/* .forgotpass{
-    forgot password?
-    font-size: 0.7rem;
-    text-align: right;
-    margin: 0.3rem 1.4rem 0 0;
-    text-decoration: none;
-    color: #464647;
-} */
