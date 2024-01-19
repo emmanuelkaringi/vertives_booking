@@ -11,9 +11,12 @@ const Navbar = () => {
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">VertivesBooking</span>
         </Link>
-        {!user  &&(
+        {!user && (
           <div className="navItems">
-            <button className="navButton">Register</button>
+            <Link to={"/register"}>
+              <button className="navButton">Register</button>
+            </Link>
+
             <Link to={"/login"}>
               <button className="navButton">Login</button>
             </Link>

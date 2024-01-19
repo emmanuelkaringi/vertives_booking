@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
     });
     await newUser.save();
     res.status(201).send("Account successfully created.");
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
@@ -42,7 +42,7 @@ export const login = async (req, res, next) => {
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin });
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
