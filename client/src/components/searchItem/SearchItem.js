@@ -5,7 +5,7 @@ const SearchItem = ({item}) => {
   return (
     <div className="searchItem">
     <img
-      src="https://cf.bstatic.com/xdata/images/hotel/square200/405795996.webp?k=e0bbe3b39ba81068129e64ac872dd0abfa3cd6de395fde3598d5e86c712601bb&o="
+      src={item.images[0]}
       alt=""
       className="siImg"
     />

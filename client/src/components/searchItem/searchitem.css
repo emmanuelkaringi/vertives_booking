@@ -41,9 +41,14 @@
 .siFeatures {
   color: #181e4b;
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: capitalize;
+  max-height: 3em; /* Adjust this value based on your font size and line height */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .siCancelOp {

@@ -7,7 +7,7 @@ export const createHotel = async (req, res, next) => {
   try {
     const savedHotel = await newHotel.save();
     res.status(200).json(savedHotel);
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
@@ -20,7 +20,7 @@ export const updateHotel = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(updatedHotel);
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
@@ -29,7 +29,7 @@ export const deleteHotel = async (req, res, next) => {
   try {
     await Hotel.findByIdAndDelete(req.params.id);
     res.status(200).json("Hotel deleted sucessfully");
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
@@ -38,7 +38,7 @@ export const getHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findById(req.params.id);
     res.status(200).json(hotel);
-  } catch (error) {
+  } catch (err) {
     next(err);
   }
 };
@@ -47,18 +47,17 @@ export const getAllHotels = async (req, res, next) => {
   const { min, max, limit, ...others } = req.query;
 
   try {
-    const limitValue = limit ? parseInt(limit, 10) : 0; // Parse limit as an integer
-
     const hotels = await Hotel.find({
       ...others,
-      cheapestPrice: { $gt: min | 1, $lte: max || 9999 },
-    }).limit(limitValue);
+      cheapestPrice: { $gt: min | 1, $lte: max || 999999 },
+    }).limit(limit ? parseInt(limit, 10) : 0);
 
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
   }
 };
+
 
 
 

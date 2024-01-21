@@ -5,7 +5,6 @@ const FeaturedProperties = () => {
   const { data, loading, error } = useFetch(
     "http://localhost:8080/api/hotels?featured=true&limit=4"
   );
-  console.log(data);
 
   return (
     <div className="fp">
@@ -16,8 +15,7 @@ const FeaturedProperties = () => {
           {data.map((item) => (
             <div className="fpItem" key={item._id}>
               <img
-                src="https://cf.bstatic.com/xdata/images/hotel/square200/87043239.webp?k=63493cf4fba80234e2e1a22bbedc562688a42be628afbc35801deb65d2fe3f77&o="
-                // src={item.photos[0]}
+                src={item.images[0]}
                 alt=""
                 className="fpImg"
               />
