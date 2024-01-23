@@ -57,7 +57,7 @@ const Sidebar = () => {
               <span>Restaurants</span>
             </li>
           </Link>
-          <p className="title">USEFUL</p>
+          {/* <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
             <span>Stats</span>
@@ -83,7 +83,7 @@ const Sidebar = () => {
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
-          </li>
+          </li> */}
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
