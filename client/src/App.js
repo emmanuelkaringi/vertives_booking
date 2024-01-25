@@ -9,6 +9,7 @@ import List from "./pages/list/List";
 import './App.css';
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Checkout from "./pages/checkout/Checkout";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/hotels" element={<List/>}/>
         <Route path="/hotels/:id" element={<Single/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
       </Routes>
     </BrowserRouter>
   );
