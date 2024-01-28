@@ -43,6 +43,11 @@ const ReservationSchema = new Schema(
     confirmationNumber: {
       type: String,
     },
+    status: {
+      type: String,
+      enum: ["pending", "confirmed", "canceled"],
+      default: "pending",
+    },
   },
   { timestamps: true }
 );

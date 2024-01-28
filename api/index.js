@@ -8,6 +8,7 @@ import roomsRoute from "./routes/rooms.js";
 import restaurantsRoute from "./routes/restaurants.js";
 import tablesRoute from "./routes/tables.js";
 import checkoutRoute from "./routes/checkout.js";
+import reserveRoute from "./routes/reserve.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -39,6 +40,7 @@ app.use("/api/rooms", roomsRoute);
 app.use("/api/restaurants", restaurantsRoute);
 app.use("/api/tables", tablesRoute);
 app.use("/api/checkout", checkoutRoute);
+app.use("/api/reserve", reserveRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
