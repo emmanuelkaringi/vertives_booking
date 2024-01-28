@@ -1,10 +1,16 @@
 import Reservation from "../models/Reserve.js";
+import Room from "../models/Room.js";
+import { deleteRoomAvailability, updateRoomAvailability } from "./roomController.js";
 
 export const createReservation = async (req, res, next) => {
   const newReservation = new Reservation(req.body);
 
   try {
     const savedReservation = await newReservation.save();
+    const roomId = req.body.roomId;
+    const reservationDates = [req.body.checkInDate, req.body.checkOutDate]
+
+    await updateRoomAvailability(roomId, reservationDates);
     res.status(200).json(savedReservation);
   } catch (err) {
     next(err);
@@ -26,12 +32,22 @@ export const updateReservation = async (req, res, next) => {
 
 export const cancelReservation = async (req, res, next) => {
   try {
-    await Reservation.findByIdAndUpdate(
+    const canceledReservation = await Reservation.findByIdAndUpdate(
       req.params.id,
       { status: "canceled" },
       { new: true }
     );
-    res.status(200).json("Reservation canceled sucessfully");
+
+    const roomId = canceledReservation.roomId;
+    const canceledDates = [
+        canceledReservation.checkInDate,
+        canceledReservation.checkOutDate,
+      ];
+
+    await deleteRoomAvailability(roomId, canceledDates)
+    res.status(200).json({
+        message: "Reservation canceled sucessfully",
+        reservation: canceledReservation,});
   } catch (err) {
     next(err);
   }
