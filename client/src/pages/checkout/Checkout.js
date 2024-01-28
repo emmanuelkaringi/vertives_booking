@@ -1,26 +1,47 @@
+import { useState } from "react";
 import "./checkout.css";
 
 function Checkout() {
+  const [fullName, setFullName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [hotelName, setHotelName] = useState("Placeholder");
+  const [roomDetails, setRoomDetails] = useState("Room Title : Room Number");
+  const [totalPrice, setTotalPrice] = useState("$150");
+
+  const handlePayment = () => {
+    // Implement payment logic here
+    console.log("Payment logic goes here");
+  };
+
   return (
     <div className="checkout">
       <main className="container">
         <aside className="info">
-          {/* <!-- Credit Card Name --> */}
           <label className="name">Full Name</label>
-          <input className="input" type="text" name="cardNumber" />
+          <input
+            className="input"
+            type="text"
+            name="fullName"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
 
-          {/* <!-- Phone --> */}
           <label className="phone">Phone Number</label>
-          <input className="input" type="text" name="cardholderName" />
-
-          {/* <button className='makePayment'>MAKE A PAYMENT</button> */}
+          <input
+            className="input"
+            type="text"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
         </aside>
         <aside className="description">
-          <h2>Original wayfarer classic</h2>
-          <h3>Green classic g-15</h3>
-          {/* <img src='http://www.ray-ban.com/_repository/_resources/_collections/sun/RB4105/601/_default_500_300/601.png'> */}
-          <h1>$150</h1>
-          <button className="editOrder">Pay with MPesa</button>
+          <h2>{hotelName}</h2>
+          <h3>{roomDetails}</h3>
+          <h1>{totalPrice}</h1>
+          <button className="editOrder" onClick={handlePayment}>
+            Pay with MPesa
+          </button>
         </aside>
       </main>
     </div>

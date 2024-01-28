@@ -2,41 +2,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./reserve.css";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../../hooks/useFetch";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
+  const [maxRooms, setMaxRooms] = useState(1);
   const { data, loading, error } = useFetch(
     `http://localhost:8080/api/hotels/room/${hotelId}`
   );
-  const { dates } = useContext(SearchContext);
+  const { options } = useContext(SearchContext);
+  const navigate = useNavigate();
 
-  const getDatesInRange = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const date = new Date(start.getTime());
-    let list = [];
+  useEffect(() => {
+    setMaxRooms(options.room);
+  }, [options.room]);
 
-    while (date <= end) {
-      list.push(new Date(date).getTime());
-      date.setDate(date.getDate() + 1);
-    }
-    return list;
-  };
-
-  const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
-  const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavailableDates.some((date) =>
-      alldates.includes(new Date(date).getTime())
-    );
-    return !isFound;
-  };
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
+    if (checked && selectedRooms.length >= maxRooms) {
+      return;
+    }
     setSelectedRooms(
       checked
         ? [...selectedRooms, value]
@@ -44,21 +32,11 @@ const Reserve = ({ setOpen, hotelId }) => {
     );
   };
   console.log(selectedRooms);
-  const navigate = useNavigate();
 
   const handleClick = async () => {
     try {
-      await Promise.all(
-        selectedRooms.map((roomId) => {
-          const res = axios.put(
-            `http://localhost:8080/api/rooms/availability/${roomId}`,
-            { dates: alldates }
-          );
-          return res.data;
-        })
-      );
       setOpen(false);
-      navigate("/");
+      navigate("/checkout");
     } catch (err) {}
   };
 
@@ -81,9 +59,6 @@ const Reserve = ({ setOpen, hotelId }) => {
               </div>
               <div className="rPrice">KES {item.price}</div>
             </div>
-            {/* <div className='rSelectRooms'>
-                            
-                        </div> */}
             {item.roomNumbers.map((roomNumber) => (
               <div className="room">
                 <label>{roomNumber.number}</label>
@@ -91,13 +66,23 @@ const Reserve = ({ setOpen, hotelId }) => {
                   type="checkbox"
                   value={roomNumber._id}
                   onChange={handleSelect}
-                  disabled={!isAvailable(roomNumber)}
+                  checked={selectedRooms.includes(roomNumber._id)}
                 />
               </div>
             ))}
           </div>
         ))}
-        <button onClick={handleClick} className="rButton">
+        <button
+          onClick={handleClick}
+          className={`rButton ${
+            selectedRooms.length === 0 || selectedRooms.length > maxRooms
+              ? "disabled"
+              : ""
+          }`}
+          disabled={
+            selectedRooms.length === 0 || selectedRooms.length > maxRooms
+          }
+        >
           Reserve Now!
         </button>
       </div>

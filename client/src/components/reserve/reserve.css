@@ -76,3 +76,8 @@
   width: 100%;
   margin-top: 20px;
 }
+
+.rButton:disabled {
+  background-color: #ccc; /* Change to the desired gray color */
+  cursor: not-allowed;
+}
