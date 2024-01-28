@@ -34,7 +34,7 @@ const Header = ({ type }) => {
     room: 1,
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -45,12 +45,12 @@ const Header = ({ type }) => {
     });
   };
 
-  const {dispatch} = useContext(SearchContext)
+  const { dispatch } = useContext(SearchContext);
 
-  const handleSearch = ()=>{
-    dispatch({type: "NEW_SEARCH", payload: {destination, dates, options}})
+  const handleSearch = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
     navigate("/hotels", { state: { destination, dates, options } });
-  }
+  };
 
   return (
     <div className="header">
@@ -89,7 +89,7 @@ const Header = ({ type }) => {
                 <div className="headerSearchItem">
                   <FontAwesomeIcon icon={faBed} className="headerIcon" />
                   <input
-                  id="location"
+                    id="location"
                     type="text"
                     placeholder="Where are you going?"
                     className="headerSearchInput"
@@ -196,7 +196,9 @@ const Header = ({ type }) => {
                 </div>
 
                 <div className="headerSearchItem">
-                  <button className="headerBtn" onClick={handleSearch}>Search</button>
+                  <button className="headerBtn" onClick={handleSearch}>
+                    Search
+                  </button>
                 </div>
               </div>
             </>

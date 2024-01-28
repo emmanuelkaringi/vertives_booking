@@ -1,5 +1,10 @@
 import express from "express";
-import { deleteUser, getAllUsers, getUser, updateUser } from "../controllers/userController.js";
+import {
+  deleteUser,
+  getAllUsers,
+  getUser,
+  updateUser,
+} from "../controllers/userController.js";
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router();
@@ -17,7 +22,6 @@ const router = express.Router();
 //     res.send("You are logged in as Admin!")
 // })
 
-
 //UPDATE
 router.put("/:id", verifyUser, updateUser);
 
@@ -30,4 +34,4 @@ router.get("/:id", verifyUser, getUser);
 //GET ALL
 router.get("/", getAllUsers);
 
-export default router
+export default router;

@@ -44,7 +44,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     );
   };
   console.log(selectedRooms);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     try {
@@ -57,8 +57,8 @@ const Reserve = ({ setOpen, hotelId }) => {
           return res.data;
         })
       );
-      setOpen(false)
-      navigate("/")
+      setOpen(false);
+      navigate("/");
     } catch (err) {}
   };
 

@@ -73,7 +73,11 @@ export const stkPush = async (req, res) => {
       res.status(200).json(data.data);
     })
     .catch((err) => {
-        console.error("Error making STK Push request:", err.response?.status, err.response?.data);
-        res.status(400).json(err.response?.data || err.message);
-      });
+      console.error(
+        "Error making STK Push request:",
+        err.response?.status,
+        err.response?.data
+      );
+      res.status(400).json(err.response?.data || err.message);
+    });
 };

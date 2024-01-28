@@ -36,36 +36,35 @@ const Login = () => {
 
   return (
     <div className="container">
-    <div className="wrapper">
-      <h1 className="title">Login</h1>
-      <div className="form">
-        <input
-          type="text"
-          placeholder="username"
-          id="username"
-          onChange={handleChange}
-          className="fInput"
-        />
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={handleChange}
-          className="fInput"
-        />
+      <div className="wrapper">
+        <h1 className="title">Login</h1>
+        <div className="form">
+          <input
+            type="text"
+            placeholder="username"
+            id="username"
+            onChange={handleChange}
+            className="fInput"
+          />
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            onChange={handleChange}
+            className="fInput"
+          />
+        </div>
+        <button disabled={loading} onClick={handleClick} className="authbtn">
+          Login
+        </button>
+        {error && <span>{error.message}</span>}
+        <div className="member">
+          Don't have an account?{" "}
+          <Link to="/register" className="link">
+            Register Here
+          </Link>
+        </div>
       </div>
-      <button disabled={loading} onClick={handleClick} className="authbtn">
-        Login
-      </button>
-      {error && <span>{error.message}</span>}
-      <div className="member">
-        Don't have an account?{" "}
-        <Link to="/register" className="link">
-          Register Here
-        </Link>
-      </div>
-    </div>
-
     </div>
   );
 };
