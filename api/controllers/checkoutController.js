@@ -81,3 +81,44 @@ export const stkPush = async (req, res) => {
       res.status(400).json(err.response?.data || err.message);
     });
 };
+
+export const checkTransactionStatus = async (req, res) => {
+  if (!token) {
+    return res.status(500).json({ error: "Token not available" });
+  }
+
+  const url =
+    "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query";
+
+  const data = {
+    Initiator: process.env.INITIATOR,
+    SecurityCredential: password,
+    CommandID: "TransactionStatusQuery",
+    TransactionID: "OEI2AK4Q16",
+    PartyA: shortCode, // Replace with your shortcode
+    IdentifierType: "1", // Or "2" for Till Number
+    Remarks: "Test remarks",
+    QueueTimeOutURL: "https://mydomain.com/TransactionStatus/queue/",
+    ResultURL: "https://mydomain.com/TransactionStatus/result/",
+  };
+
+  await axios
+    .get(url, {
+      params: data,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((data) => {
+      console.log("Transaction Status Query Response:", data);
+      res.status(200).json(data.data);
+    })
+    .catch((err) => {
+      console.error(
+        "Error checking transaction status:",
+        err.response?.status,
+        err.response?.data
+      );
+      res.status(400).json(err.response?.data || err.message);
+    });
+};

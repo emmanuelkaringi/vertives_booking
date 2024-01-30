@@ -1,6 +1,8 @@
 import Reservation from "../models/Reserve.js";
-import Room from "../models/Room.js";
-import { deleteRoomAvailability, updateRoomAvailability } from "./roomController.js";
+import {
+  updateRoomAvailability,
+  deleteRoomAvailability,
+} from "./roomController.js";
 
 export const createReservation = async (req, res, next) => {
   const newReservation = new Reservation(req.body);
@@ -8,7 +10,7 @@ export const createReservation = async (req, res, next) => {
   try {
     const savedReservation = await newReservation.save();
     const roomId = req.body.roomId;
-    const reservationDates = [req.body.checkInDate, req.body.checkOutDate]
+    const reservationDates = [req.body.checkInDate, req.body.checkOutDate];
 
     await updateRoomAvailability(roomId, reservationDates);
     res.status(200).json(savedReservation);
@@ -40,14 +42,15 @@ export const cancelReservation = async (req, res, next) => {
 
     const roomId = canceledReservation.roomId;
     const canceledDates = [
-        canceledReservation.checkInDate,
-        canceledReservation.checkOutDate,
-      ];
+      canceledReservation.checkInDate,
+      canceledReservation.checkOutDate,
+    ];
 
-    await deleteRoomAvailability(roomId, canceledDates)
+    await deleteRoomAvailability(roomId, canceledDates);
     res.status(200).json({
-        message: "Reservation canceled sucessfully",
-        reservation: canceledReservation,});
+      message: "Reservation canceled sucessfully",
+      reservation: canceledReservation,
+    });
   } catch (err) {
     next(err);
   }
@@ -63,10 +66,10 @@ export const getReservation = async (req, res, next) => {
 };
 
 export const getAllReservations = async (req, res, next) => {
-    try {
-      const reservations = await Reservation.find();
-      res.status(200).json(reservations);
-    } catch (err) {
-      next(err);
-    }
-  };
+  try {
+    const reservations = await Reservation.find();
+    res.status(200).json(reservations);
+  } catch (err) {
+    next(err);
+  }
+};

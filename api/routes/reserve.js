@@ -18,9 +18,5 @@ router.get("/find/:id", getReservation);
 
 //GET ALL
 router.get("/", getAllReservations);
-router.get("/countByCity",);
-
-// ROOMS
-router.get("/room/:id",);
 
 export default router;

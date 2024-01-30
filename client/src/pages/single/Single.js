@@ -29,7 +29,7 @@ const Single = () => {
   const navigate = useNavigate();
 
   const { dates, options } = useContext(SearchContext);
-  console.log(dates);
+  // console.log(dates);
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
