@@ -19,6 +19,9 @@ const RoomSchema = new Schema(
       type: Number,
       required: true,
     },
+    unavailableDates: { 
+      type: [Date] 
+    },
   },
   { timestamps: true }
 );

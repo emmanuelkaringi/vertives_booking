@@ -3,6 +3,6 @@ import { checkTransactionStatus, createToken, stkPush } from "../controllers/che
 
 const router = express.Router();
 
-router.post("/", createToken, stkPush, checkTransactionStatus);
+router.post("/:id", createToken, stkPush, checkTransactionStatus);
 
 export default router;

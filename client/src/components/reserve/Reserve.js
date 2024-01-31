@@ -51,8 +51,6 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   console.log(selectedRooms);
 
-  useEffect(() => {}, [data]);
-
   const handleClick = async () => {
     try {
       await Promise.all(

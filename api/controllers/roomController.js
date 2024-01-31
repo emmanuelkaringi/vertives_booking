@@ -37,10 +37,10 @@ export const updateRoom = async (req, res, next) => {
 export const updateRoomAvailability = async (roomId, dates) => {
   try {
     await Room.updateOne(
-      { "roomNumbers._id": roomId },
+      { _id: roomId },
       {
         $push: {
-          "roomNumbers.$.unavailableDates": { $each: dates },
+          unavailableDates: { $each: dates },
         },
       }
     );
@@ -53,10 +53,10 @@ export const updateRoomAvailability = async (roomId, dates) => {
 export const deleteRoomAvailability = async (roomId, dates) => {
   try {
     await Room.updateOne(
-      { "roomNumbers._id": roomId },
+      { _id: roomId },
       {
         $pullAll: {
-          "roomNumbers.$.unavailableDates": dates,
+          unavailableDates: dates,
         },
       }
     );
