@@ -51,6 +51,23 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   console.log(selectedRooms);
 
+  const isRoomAvailable = (room) => {
+    if (room.unavailableDates && room.unavailableDates.length > 0) {
+      const startDate = new Date(dates[0].startDate);
+      const endDate = new Date(dates[0].endDate);
+
+      for (const unavailableDate of room.unavailableDates) {
+        const currentDate = new Date(unavailableDate);
+
+        if (currentDate >= startDate && currentDate <= endDate) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
   const handleClick = async () => {
     try {
       await Promise.all(
@@ -93,7 +110,10 @@ const Reserve = ({ setOpen, hotelId }) => {
         />
         <span>Select your rooms:</span>
         {data.map((room) => (
-          <div key={room._id} className="rItem">
+          <div
+            key={room._id}
+            className={`rItem ${!isRoomAvailable(room) ? "unavailable" : ""}`}
+          >
             <div className="rItemInfo">
               <div className="rTitle">{room.title}</div>
               <div className="rDesc">{room.description}</div>
@@ -103,12 +123,16 @@ const Reserve = ({ setOpen, hotelId }) => {
               <div className="rPrice">KES {room.price}</div>
             </div>
             <div className="room">
-              <input
-                type="checkbox"
-                value={room._id}
-                onChange={(e) => handleSelect(e, room)}
-                checked={selectedRooms.includes(room._id)}
-              />
+              {!isRoomAvailable(room) ? (
+                <div className="unavailableText">Unavailable</div>
+              ) : (
+                <input
+                  type="checkbox"
+                  value={room._id}
+                  onChange={(e) => handleSelect(e, room)}
+                  checked={selectedRooms.includes(room._id)}
+                />
+              )}
             </div>
           </div>
         ))}
