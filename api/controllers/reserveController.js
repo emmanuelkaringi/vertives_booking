@@ -58,12 +58,37 @@ export const cancelReservation = async (req, res, next) => {
 
 export const getReservation = async (req, res, next) => {
   try {
-    const reservation = await Reservation.findById(req.params.id);
-    res.status(200).json(reservation);
+    const reservation = await Reservation.findById(req.params.id)
+      .populate("userId", "username") // Populate user and specify fields to include
+      .populate("hotelId", "name") // Populate hotel and specify fields to include
+      .populate("roomId", "title"); // Populate room and specify fields to include
+
+    if (!reservation) {
+      return res.status(404).json({ message: "Reservation not found" });
+    }
+
+    const populatedReservation = {
+      _id: reservation._id,
+      userId: reservation.userId,
+      hotelId: reservation.hotelId,
+      roomId: reservation.roomId,
+      checkInDate: reservation.checkInDate,
+      checkOutDate: reservation.checkOutDate,
+      paymentStatus: reservation.paymentStatus,
+      totalAmount: reservation.totalAmount,
+      mpesaPaymentId: reservation.mpesaPaymentId,
+      confirmationNumber: reservation.confirmationNumber,
+      status: reservation.status,
+      createdAt: reservation.createdAt,
+      updatedAt: reservation.updatedAt,
+    };
+
+    res.status(200).json(populatedReservation);
   } catch (err) {
     next(err);
   }
 };
+
 
 export const getAllReservations = async (req, res, next) => {
   try {

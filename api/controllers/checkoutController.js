@@ -58,7 +58,7 @@ export const stkPush = async (req, res) => {
     PartyB: shortCode,
     PhoneNumber: req.body.phone,
     CallBackURL: "https://mydomain.com/path",
-    AccountReference: "YOUR_ORDER_ID",
+    AccountReference: req.body.orderId,
     TransactionDesc: "Payment for Order",
   };
 

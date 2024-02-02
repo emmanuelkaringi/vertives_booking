@@ -70,7 +70,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const handleClick = async () => {
     try {
-      await Promise.all(
+      const reservations = await Promise.all(
         selectedRooms.map(async (roomId) => {
           const room = data.find((r) => r._id === roomId);
           const totalAmount = room.price * days;
@@ -94,7 +94,8 @@ const Reserve = ({ setOpen, hotelId }) => {
         })
       );
       setOpen(false);
-      navigate("/checkout");
+      const _id = reservations[0]._id;
+      navigate(`/checkout/${_id}`);
     } catch (err) {
       console.error("Error during reservation:", err);
     }
