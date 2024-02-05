@@ -8,7 +8,6 @@ const Register = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
     email: undefined,
-    country: undefined,
     city: undefined,
     phone: undefined,
     password: undefined,
@@ -52,13 +51,6 @@ const Register = () => {
           type="email"
           placeholder="Email"
           id="email"
-          onChange={handleChange}
-          className="fInput"
-        />
-        <input
-          type="text"
-          placeholder="Country"
-          id="country"
           onChange={handleChange}
           className="fInput"
         />
