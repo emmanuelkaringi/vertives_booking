@@ -18,6 +18,18 @@
   margin-bottom: 1.2rem;
 }
 
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.fLabel {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px; /* Adjust this value as needed */
+}
+
 .fInput {
   box-sizing: border-box;
   width: 92%;

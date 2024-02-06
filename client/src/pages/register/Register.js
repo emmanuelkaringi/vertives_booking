@@ -40,13 +40,15 @@ const Register = () => {
     <div className="wrapper">
       <h1 className="title">Sign Up</h1>
       <div className="form">
+      <label className="fLabel">Full Name:</label>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="John Doe"
           id="username"
           onChange={handleChange}
           className="fInput"
         />
+        <label className="fLabel">Email:</label>
         <input
           type="email"
           placeholder="Email"
@@ -54,6 +56,7 @@ const Register = () => {
           onChange={handleChange}
           className="fInput"
         />
+        <label className="fLabel">City:</label>
         <input
           type="text"
           placeholder="City"
@@ -61,13 +64,15 @@ const Register = () => {
           onChange={handleChange}
           className="fInput"
         />
+        <label className="fLabel">Phone Number:</label>
         <input
           type="text"
-          placeholder="Phone"
+          placeholder="254700000000"
           id="phone"
           onChange={handleChange}
           className="fInput"
         />
+        <label className="fLabel">Password:</label>
         <input
           type="password"
           placeholder="Password"
