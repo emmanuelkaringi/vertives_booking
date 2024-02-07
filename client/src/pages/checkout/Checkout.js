@@ -30,16 +30,25 @@ function Checkout() {
       );
       // Handle the payment response
       if (paymentResponse.status === 200) {
-        // Payment was successful
-        alert("Payment successful!");
-        // Redirect to success page or perform other actions
+        const updateData = {
+          paymentStatus: "completed",
+          status: "confirmed",
+        };
+        await axios.put(`http://localhost:8080/api/reserve/${id}`, updateData);
+        setTimeout(() => {
+          alert("Payment successful! Booking confirmed. Check your email for a confirmation.");
+        },  15000);
       } else {
         // Payment failed
-        alert("Payment failed. Please try again.");
+        setTimeout(() => {
+          alert("Payment failed. Please try again.");
+        },  5000);
       }
     } catch (error) {
       console.error("Error processing payment:", error);
-      alert("An error occurred during payment. Please try again.");
+      setTimeout(() => {
+        alert("An error occurred during payment. Please try again.");
+      },  5000);
     }
   };
 

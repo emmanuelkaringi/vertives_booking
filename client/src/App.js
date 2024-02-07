@@ -5,6 +5,7 @@ import List from "./pages/list/List";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Checkout from "./pages/checkout/Checkout";
+import Success from "./pages/success/Success";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/hotels" element={<List />} />
         <Route path="/hotels/:id" element={<Single />} />
         <Route path="/checkout/:id" element={<Checkout />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   );

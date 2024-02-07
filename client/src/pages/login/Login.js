@@ -35,17 +35,19 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="wrapper">
-        <h1 className="title">Login</h1>
-        <div className="form">
+    <div className="container2">
+      <div className="wrapper2">
+        <h1 className="title2">Login</h1>
+        <div className="form2">
+        <label className="fLabel2">Full Name:</label>
           <input
             type="text"
-            placeholder="username"
+            placeholder="John Doe"
             id="username"
             onChange={handleChange}
             className="fInput"
           />
+          <label className="fLabel">Password:</label>
           <input
             type="password"
             placeholder="password"

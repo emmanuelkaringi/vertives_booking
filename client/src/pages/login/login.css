@@ -1,8 +1,8 @@
-.container {
+.container2 {
   font-family: Poppins;
 }
 
-.wrapper {
+.wrapper2 {
   width: 330px;
   padding: 2rem 1rem;
   margin: 50px auto;
@@ -12,10 +12,22 @@
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
-.title {
+.title2 {
   font-size: 2rem;
   color: #07001f;
   margin-bottom: 1.2rem;
+}
+
+.form2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.fLabel2 {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
 }
 
 .fInput {
@@ -60,11 +72,10 @@
   text-decoration: none;
 }
 
-/* .forgotpass{
-  forgot password?
+.forgotpass{
   font-size: 0.7rem;
   text-align: right;
   margin: 0.3rem 1.4rem 0 0;
   text-decoration: none;
   color: #464647;
-} */
+}
