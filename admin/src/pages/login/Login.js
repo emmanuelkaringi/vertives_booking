@@ -26,7 +26,7 @@ const Login = () => {
         "http://localhost:8080/api/auth/login",
         credentials
       );
-      if (res.data.isAdmin) {
+      if (res.data.isSuperAdmin) {
         console.log("Server response:", res.data.details);
         dispatch({ type: "LOGIN_SUCCESS", payload: JSON.stringify(res.data.details) });
         navigate("/");

@@ -50,6 +50,10 @@ const HotelSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   { timestamps: true }
 );
