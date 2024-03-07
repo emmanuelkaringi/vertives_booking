@@ -19,7 +19,7 @@ router.put("/:id", verifyHotelAdmin, updateRoom);
 router.put("/availability/:id", updateRoomAvailability);
 
 //DELETE
-router.delete("/:id/:hotelid", verifyHotelAdmin, deleteRoom);
+router.delete("/:id", deleteRoom);
 
 //GET
 router.get("/:id", getRoom);

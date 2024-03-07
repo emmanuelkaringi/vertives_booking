@@ -1,16 +1,11 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import StoreIcon from "@mui/icons-material/Store";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
+import HotelIcon from '@mui/icons-material/Hotel';
+import DoorbellIcon from '@mui/icons-material/Doorbell';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -41,19 +36,19 @@ const Sidebar = () => {
           </Link>
           <Link to="/hotels" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <HotelIcon className="icon" />
               <span>Hotels</span>
             </li>
           </Link>
           <Link to="/rooms" style={{ textDecoration: "none" }}>
             <li>
-              <CreditCardIcon className="icon" />
+              <DoorbellIcon className="icon" />
               <span>Rooms</span>
             </li>
           </Link>
           <Link to="/restaurants" style={{ textDecoration: "none" }}>
             <li>
-              <LocalShippingIcon className="icon" />
+              <RestaurantIcon className="icon" />
               <span>Restaurants</span>
             </li>
           </Link>
