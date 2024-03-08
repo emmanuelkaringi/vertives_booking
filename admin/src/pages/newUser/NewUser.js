@@ -8,7 +8,6 @@ import axios from 'axios'
 const New = ({inputs, title}) => {
     const [file, setFile] = useState("");
     const [info, setInfo] = useState({})
-    const cloudName = process.env.REACT_APP_CLOUDINARY_NAME;
     
     const handleChange = e =>{
       setInfo((prev) => ({...prev, [e.target.id]: e.target.value }))

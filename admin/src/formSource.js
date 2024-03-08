@@ -56,22 +56,22 @@ export const hotelInputs = [
     placeholder: "elton st, 216",
   },
   {
-    id: "distance",
-    label: "Distance from City Center",
-    type: "text",
-    placeholder: "500",
-  },
-  {
     id: "title",
     label: "Title",
     type: "text",
     placeholder: "The best Hotel",
   },
   {
-    id: "desc",
+    id: "description",
     label: "Description",
     type: "text",
     placeholder: "description",
+  },
+  {
+    id: "distance",
+    label: "Distance from City Center",
+    type: "text",
+    placeholder: "500",
   },
   {
     id: "cheapestPrice",

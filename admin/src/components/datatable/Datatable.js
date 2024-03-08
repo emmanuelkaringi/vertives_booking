@@ -67,8 +67,8 @@ const Datatable = ({columns}) => {
     return (
       <div className="datatable">
         <div className="datatableTitle">
-          Add New User
-          <Link to="/users/new" className="link">
+          {path.charAt(0).toUpperCase() + path.slice(1)}
+          <Link to={`/${path}/new`} className="link">
             Add New
           </Link>
         </div>
