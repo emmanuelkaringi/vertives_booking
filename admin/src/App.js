@@ -113,7 +113,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewRoom inputs={roomInputs} title="Add New room" />
+                    <NewRoom />
                   </ProtectedRoute>
                 }
               />
