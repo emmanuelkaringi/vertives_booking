@@ -29,8 +29,7 @@ export const userColumns = [
       width: 100,
     },
   ];
-  
-  //temporary data
+
   export const hotelColumns = [
     { field: "_id", headerName: "ID", width: 150 },
     {
@@ -71,6 +70,7 @@ export const userColumns = [
       field: "price",
       headerName: "Price",
       width: 100,
+      valueFormatter: (params) => `KES. ${params.value}`,
     },
     {
       field: "maxPeople",
@@ -78,3 +78,48 @@ export const userColumns = [
       width: 100,
     },
   ];
+
+  export const bookColumns = [
+    { field: "_id", headerName: "ID", width: 80 },
+    {
+      field: "userId",
+      headerName: "Username",
+      width: 80,
+      valueGetter: (params) => params.row.userId.username
+    },
+    {
+      field: "hotelId",
+      headerName: "Hotel",
+      width: 150,
+      valueGetter: (params) => params.row.hotelId.name
+    },
+    {
+      field: "roomId",
+      headerName: "Room Title",
+      width: 100,
+      valueGetter: (params) => params.row.roomId[0].title
+    },
+    {
+      field: "checkInDate",
+      headerName: "Check In Date",
+      width: 150,
+      valueFormatter: (params) => new Date(params.value).toDateString(),
+    },
+    {
+      field: "checkOutDate",
+      headerName: "Check Out Date",
+      width: 150,
+      valueFormatter: (params) => new Date(params.value).toDateString(),
+    },
+    {
+      field: "totalAmount",
+      headerName: "Amount",
+      width: 80,
+      valueFormatter: (params) => `KES. ${params.value}`,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 90,
+    },
+];

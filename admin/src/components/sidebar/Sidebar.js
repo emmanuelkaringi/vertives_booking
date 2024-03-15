@@ -1,10 +1,9 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import HotelIcon from '@mui/icons-material/Hotel';
-import DoorbellIcon from '@mui/icons-material/Doorbell';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+import HotelIcon from "@mui/icons-material/Hotel";
+import DoorbellIcon from "@mui/icons-material/Doorbell";
+import BookOnlineIcon from "@mui/icons-material/BookOnline";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
@@ -23,10 +22,12 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -46,39 +47,12 @@ const Sidebar = () => {
               <span>Rooms</span>
             </li>
           </Link>
-          <Link to="/restaurants" style={{ textDecoration: "none" }}>
+          <Link to="/reserve" style={{ textDecoration: "none" }}>
             <li>
-              <RestaurantIcon className="icon" />
-              <span>Restaurants</span>
+              <BookOnlineIcon className="icon" />
+              <span>Bookings</span>
             </li>
           </Link>
-          {/* <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
-          <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li> */}
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>

@@ -92,8 +92,23 @@ export const getReservation = async (req, res, next) => {
 
 export const getAllReservations = async (req, res, next) => {
   try {
-    const reservations = await Reservation.find();
-    res.status(200).json(reservations);
+    const reservations = await Reservation.find()
+      .populate('userId', 'username')
+      .populate('hotelId', 'name')
+      .populate('roomId', 'title');
+
+    const formattedReservations = reservations.map(reservation => ({
+      _id: reservation._id,
+      userId: reservation.userId,
+      hotelId: reservation.hotelId,
+      roomId: reservation.roomId,
+      checkInDate: reservation.checkInDate,
+      checkOutDate: reservation.checkOutDate,
+      totalAmount: reservation.totalAmount,
+      status: reservation.status
+    }));
+
+    res.status(200).json(formattedReservations);
   } catch (err) {
     next(err);
   }
