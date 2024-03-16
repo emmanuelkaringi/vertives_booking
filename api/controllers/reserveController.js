@@ -113,3 +113,30 @@ export const getAllReservations = async (req, res, next) => {
     next(err);
   }
 };
+
+export const countReservations = async (req, res, next) => {
+  try {
+    const reservationCount = await Reservation.countDocuments();
+    res.status(200).json({ success: true, count: reservationCount });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const calculateTotalAmount = async (req, res, next) => {
+  try {
+    const totalAmount = await Reservation.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalAmount: { $sum: "$totalAmount" }
+        }
+      }
+    ]);
+
+    // totalAmount will be an array with one object containing the sum
+    res.status(200).json({ success: true, totalAmount: totalAmount[0].totalAmount });
+  } catch (error) {
+    next(error);
+  }
+};

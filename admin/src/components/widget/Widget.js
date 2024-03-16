@@ -1,101 +1,108 @@
-import './widget.scss'
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import './widget.scss';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import BookOnlineIcon from "@mui/icons-material/BookOnline";
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 
-const Widget = ({type}) => {
-    let data;
+const Widget = ({ type }) => {
+  const [data, setData] = useState({
+    title: '',
+    isMoney: false,
+    link: '',
+    amount: 0,
+    diff: 0,
+  });
 
-    //temporary
-    const amount = 100;
-    const diff = 20;
-  
-    switch (type) {
-      case "user":
-        data = {
-          title: "USERS",
-          isMoney: false,
-          link: "See all users",
-          icon: (
-            <PersonOutlinedIcon
-              className="icon"
-              style={{
-                color: "crimson",
-                backgroundColor: "rgba(255, 0, 0, 0.2)",
-              }}
-            />
-          ),
-        };
-        break;
-      case "order":
-        data = {
-          title: "ORDERS",
-          isMoney: false,
-          link: "View all orders",
-          icon: (
-            <ShoppingCartOutlinedIcon
-              className="icon"
-              style={{
-                backgroundColor: "rgba(218, 165, 32, 0.2)",
-                color: "goldenrod",
-              }}
-            />
-          ),
-        };
-        break;
-      case "earning":
-        data = {
-          title: "EARNINGS",
-          isMoney: true,
-          link: "View net earnings",
-          icon: (
-            <MonetizationOnOutlinedIcon
-              className="icon"
-              style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-            />
-          ),
-        };
-        break;
-      case "balance":
-        data = {
-          title: "BALANCE",
-          isMoney: true,
-          link: "See details",
-          icon: (
-            <AccountBalanceWalletOutlinedIcon
-              className="icon"
-              style={{
-                backgroundColor: "rgba(128, 0, 128, 0.2)",
-                color: "purple",
-              }}
-            />
-          ),
-        };
-        break;
-      default:
-        break;
-    }
-  
-    return (
-      <div className="widget">
-        <div className="left">
-          <span className="title">{data.title}</span>
-          <span className="counter">
-            {data.isMoney && "$"} {amount}
-          </span>
-          <span className="link">{data.link}</span>
-        </div>
-        <div className="right">
-          <div className="percentage positive">
-            <KeyboardArrowUpIcon />
-            {diff} %
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response;
+        switch (type) {
+          case 'user':
+            response = await axios.get('http://localhost:8080/api/users/count');
+            setData({
+              title: 'USERS',
+              isMoney: false,
+              link: 'See all users',
+              amount: response.data.count,
+            });
+            break;
+          case 'order':
+            response = await axios.get('http://localhost:8080/api/reserve/count');
+            setData({
+              title: 'RESERVATIONS',
+              isMoney: false,
+              link: 'View all reservations',
+              amount: response.data.count,
+            });
+            break;
+          case 'earning':
+            response = await axios.get('http://localhost:8080/api/reserve/total-amount');
+            setData({
+              title: 'EARNINGS',
+              isMoney: true,
+              link: 'View net earnings',
+              amount: response.data.totalAmount,
+            });
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [type]);
+
+  return (
+    <div className="widget">
+      {type && (
+        <>
+          <div className="left">
+            <span className="title">{data.title}</span>
+            <span className="counter">
+              {data.isMoney && '$'} {data.amount}
+            </span>
+            <a href={data.link} className="link">
+              {data.link}
+            </a>
           </div>
-          {data.icon}
-        </div>
-      </div>
-    );
-  };
+          <div className="right">
+            <div className="percentage positive">
+              <KeyboardArrowUpIcon />
+              {data.diff} %
+            </div>
+            {type === 'user' ? (
+              <PersonOutlinedIcon
+                className="icon"
+                style={{
+                  color: 'crimson',
+                  backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                }}
+              />
+            ) : type === 'order' ? (
+              <BookOnlineIcon
+                className="icon"
+                style={{
+                  backgroundColor: 'rgba(218, 165, 32, 0.2)',
+                  color: 'goldenrod',
+                }}
+              />
+            ) : type === 'earning' ? (
+              <MonetizationOnOutlinedIcon
+                className="icon"
+                style={{ backgroundColor: 'rgba(0, 128, 0, 0.2)', color: 'green' }}
+              />
+            ) : null}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
-export default Widget
+export default Widget;

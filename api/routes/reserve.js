@@ -1,8 +1,14 @@
 import express from "express";
 import { verifyUser } from "../utils/verifyToken.js";
-import { cancelReservation, createReservation, getAllReservations, getReservation, updateReservation } from "../controllers/reserveController.js";
+import { cancelReservation, createReservation, getAllReservations, getReservation, updateReservation, countReservations, calculateTotalAmount } from "../controllers/reserveController.js";
 
 const router = express.Router();
+
+// COUNT
+router.get("/count", countReservations);
+
+// Total sum of money
+router.get("/total-amount", calculateTotalAmount);
 
 //CREATE
 router.post("/", createReservation);
