@@ -24,7 +24,7 @@ const NewHotel = () => {
             const data = new FormData()
             data.append("file", file)
             data.append("upload_preset", "booking")
-            const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/name/image/upload`, data)
+            const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/dbkp09ro7/image/upload`, data)
             const{url} = uploadRes.data
             return url
           })
