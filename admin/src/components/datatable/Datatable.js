@@ -15,7 +15,8 @@ const Datatable = ({columns}) => {
 
     useEffect(()=>{
       if (data) {
-        setList(data)
+        const sortedData = [...data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setList(sortedData);
       }
     }, [data])
 

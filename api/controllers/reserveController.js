@@ -5,7 +5,10 @@ import {
 } from "./roomController.js";
 
 export const createReservation = async (req, res, next) => {
-  const newReservation = new Reservation(req.body);
+  const newReservation = new Reservation({
+    ...req.body,
+    status: "confirmed" // Set the status to "confirmed"
+  });
 
   try {
     const savedReservation = await newReservation.save();

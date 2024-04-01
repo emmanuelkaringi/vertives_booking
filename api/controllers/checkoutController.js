@@ -10,7 +10,7 @@ export const createToken = async (req, res, next) => {
 
   await axios
     .get(
-      "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials", // Correct endpoint
+      "https://api.safaricom.co.ke/oauth/v1/generate", // Correct endpoint
       {
         headers: {
           authorization: `Basic ${auth}`,
@@ -57,9 +57,9 @@ export const stkPush = async (req, res) => {
     PartyA: req.body.phone, // Customer's phone number
     PartyB: shortCode,
     PhoneNumber: req.body.phone,
-    CallBackURL: "https://mydomain.com/path",
+    CallBackURL: "https://mydomain.com/pat",
     AccountReference: req.body.orderId,
-    TransactionDesc: "Payment for Order",
+    TransactionDesc: "Payment for Reservation",
   };
 
   await axios
