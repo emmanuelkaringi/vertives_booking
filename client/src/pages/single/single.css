@@ -174,3 +174,46 @@
   color: lightgray;
   cursor: pointer;
 }
+
+.reviews-section {
+  margin-top: 20px;
+}
+
+.reviews-section h2 {
+  color: #181e4b;
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.review-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start; /* Align reviews to the left */
+}
+
+.review-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.review-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.review-rating {
+  font-weight: bold;
+}

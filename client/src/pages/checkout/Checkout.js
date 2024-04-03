@@ -3,9 +3,10 @@ import "./checkout.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Checkout() {
+  const navigate = useNavigate();
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const { user } = useContext(AuthContext);
@@ -29,26 +30,23 @@ function Checkout() {
         paymentData
       );
       // Handle the payment response
-      if (paymentResponse.status === 200) {
+      if (paymentResponse.data.success) {
         const updateData = {
           paymentStatus: "completed",
           status: "confirmed",
         };
         await axios.put(`http://localhost:8080/api/reserve/${id}`, updateData);
         setTimeout(() => {
-          alert("Payment successful! Booking confirmed. Check your email for a confirmation.");
+          alert("Payment successful! Booking confirmed.");
+          navigate(`/success/${id}`); // Navigate to the success page
         },  15000);
       } else {
         // Payment failed
-        setTimeout(() => {
-          alert("Payment failed. Please try again.");
-        },  5000);
+        alert(paymentResponse.data.message);
       }
     } catch (error) {
       console.error("Error processing payment:", error);
-      setTimeout(() => {
-        alert("An error occurred during payment. Please try again.");
-      },  5000);
+      alert("An error occurred during payment. Please try again.");
     }
   };
 

@@ -9,12 +9,14 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
+import ReviewCard from "../../components/review/ReviewCard";
+import axios from "axios";
 
 const Single = () => {
   const location = useLocation();
@@ -26,6 +28,7 @@ const Single = () => {
     `http://localhost:8080/api/hotels/find/${id}`
   );
   const { user } = useContext(AuthContext);
+  console.log(user);
   const navigate = useNavigate();
 
   const { dates, options } = useContext(SearchContext);
@@ -62,6 +65,50 @@ const Single = () => {
       setOpenBook(true);
     } else {
       navigate("/login");
+    }
+  };
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/hotels/${id}/reviews`
+        );
+        setReviews(response.data);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, [id]);
+
+  const [newReviewContent, setNewReviewContent] = useState("");
+  const [newReviewRating, setNewReviewRating] = useState(0);
+  const [ratingOptions] = useState([1, 2, 3, 4, 5]);
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/api/hotels/${id}/reviews`,
+        {
+          content: newReviewContent,
+          rating: newReviewRating,
+          user: user._id,
+        }
+      );
+      setNewReviewContent("");
+      setNewReviewRating(0);
+      // Handle successful review submission, maybe show a success message
+      console.log("Review submitted successfully:", response.data);
+      // Refresh the reviews by fetching them again
+      // You can either re-fetch all reviews or just fetch the new review
+    } catch (error) {
+      // Handle error
+      console.error("Error submitting review:", error);
     }
   };
 
@@ -141,6 +188,44 @@ const Single = () => {
                 </h2>
                 <button onClick={handleClick}>Reserve or Book Now!</button>
               </div>
+            </div>
+            <div className="reviews-section">
+              <h2>Reviews</h2>
+              <div className="review-cards">
+                {reviews.map((review) => (
+                  <ReviewCard key={review._id} review={review} />
+                ))}
+              </div>
+            </div>
+            <div className="add-review-section">
+              <h3>Add a Review</h3>
+              <form onSubmit={handleReviewSubmit}>
+                <textarea
+                  value={newReviewContent}
+                  onChange={(e) => setNewReviewContent(e.target.value)}
+                  placeholder="Enter your review..."
+                  rows={4}
+                  required
+                />
+                <label>
+                  Rating:
+                  <select
+                    value={newReviewRating}
+                    onChange={(e) =>
+                      setNewReviewRating(parseInt(e.target.value))
+                    }
+                    required
+                  >
+                    <option value="">Select Rating</option>
+                    {ratingOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <button type="submit">Submit Review</button>
+              </form>
             </div>
           </div>
           <MailList />
