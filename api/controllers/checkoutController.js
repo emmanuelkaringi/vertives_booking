@@ -10,7 +10,7 @@ export const createToken = async (req, res, next) => {
 
   await axios
     .get(
-      "https://api.safaricom.co.ke/oauth/v1/generate", // Correct endpoint
+      "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials",
       {
         headers: {
           authorization: `Basic ${auth}`,
@@ -57,7 +57,7 @@ export const stkPush = async (req, res) => {
     PartyA: req.body.phone, // Customer's phone number
     PartyB: shortCode,
     PhoneNumber: req.body.phone,
-    CallBackURL: "https://mydomain.com/pat",
+    CallBackURL: "https://188d-102-215-32-244.ngrok-free.app",
     AccountReference: req.body.orderId,
     TransactionDesc: "Payment for Reservation",
   };
@@ -68,9 +68,14 @@ export const stkPush = async (req, res) => {
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((data) => {
-      console.log("STK Push Response:", data);
-      res.status(200).json(data.data);
+    .then((response) => {
+      if (response.data.ResponseCode === "0") {
+        // Payment successful
+        res.status(200).json({ success: true });
+      } else {
+        // Payment failed
+        res.status(400).json({ success: false, message: "Payment failed. Please try again." });
+      }
     })
     .catch((err) => {
       console.error(
@@ -78,7 +83,7 @@ export const stkPush = async (req, res) => {
         err.response?.status,
         err.response?.data
       );
-      res.status(400).json(err.response?.data || err.message);
+      res.status(500).json({ success: false, message: "An error occurred during payment. Please try again." });
     });
 };
 
