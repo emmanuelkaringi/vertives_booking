@@ -4,6 +4,8 @@
 /model/hotel_recommender copy.ipynb
 /images
 
+.terraform
+
 # dependencies
 node_modules
 /.pnp
